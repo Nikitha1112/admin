@@ -386,17 +386,18 @@
                   </div>
                 </div>
               </div>
-              <div class="col-md-5 grid-margin stretch-card">
-                <div class="card">
-                  <div class="card-body">
-                    <h4 class="card-title">Traffic Sources</h4>
-                    <div class="doughnutjs-wrapper d-flex justify-content-center">
-                      <canvas id="traffic-chart"></canvas>
-                    </div>
-                    <div id="traffic-chart-legend" class="rounded-legend legend-vertical legend-bottom-left pt-4"></div>
-                  </div>
-                </div>
-              </div>
+            <div class="col-md-5 grid-margin stretch-card">
+  <div class="card">
+    <div class="card-body">
+      <h4 class="card-title">Club Distribution</h4>
+      <div class="doughnutjs-wrapper d-flex justify-content-center">
+        <canvas id="club-chart"></canvas>
+      </div>
+      <div id="club-chart-legend" class="rounded-legend legend-vertical legend-bottom-left pt-4"></div>
+    </div>
+  </div>
+</div>
+
             </div>
             <div class="row">
               <div class="col-12 grid-margin">
@@ -498,6 +499,30 @@
     <!-- endinject -->
     <!-- Custom js for this page -->
     <script src="assets/js/dashboard.js"></script>
+    <script>
+var ctx = document.getElementById("club-chart").getContext('2d');
+var clubChart = new Chart(ctx, {
+  type: 'doughnut',
+  data: {
+    labels: ['Coders Club', 'IOT Club', 'Happy Hive', 'Kernel Klub', 'Other'],
+    datasets: [{
+      data: [830, 500, 200, 160, 915],
+      backgroundColor: ['#4e73df', '#1cc88a', '#f6c23e', '#36b9cc', '#e74a3b']
+    }]
+  },
+  options: {
+    responsive: true,
+    plugins: {
+      legend: {
+        display: true,
+        position: 'bottom'
+      }
+    }
+  }
+});
+;
+
+    </script>
     <!-- End custom js for this page -->
   </body>
 </html>
