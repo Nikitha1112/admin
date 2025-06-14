@@ -53,7 +53,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#" data-page="tables.html">
+            <a class="nav-link" href="tables.html" data-page="tables.html">
               <span class="menu-title">Tables</span>
               <i class="mdi mdi-table-large menu-icon"></i>
             </a>
@@ -84,7 +84,7 @@
                     <img src="assets/images/dashboard/circle.svg" class="card-img-absolute" alt="circle-image" />
                     <h4 class="font-weight-normal mb-3">Total Registrations <i class="mdi mdi-chart-line mdi-24px float-end"></i>
                     </h4>
-                    <h2 class="mb-5">124</h2>
+                    <h2 class="mb-5">459</h2>
                     <h6 class="card-text">Increased by 60%</h6>
                   </div>
                 </div>
@@ -95,7 +95,7 @@
                     <img src="assets/images/dashboard/circle.svg" class="card-img-absolute" alt="circle-image" />
                     <h4 class="font-weight-normal mb-3">Club Applications <i class="mdi mdi-bookmark-outline mdi-24px float-end"></i>
                     </h4>
-                    <h2 class="mb-5">310</h2>
+                    <h2 class="mb-5">2903</h2>
                     <h6 class="card-text">Decreased by 10%</h6>
                   </div>
                 </div>
@@ -106,25 +106,26 @@
                     <img src="assets/images/dashboard/circle.svg" class="card-img-absolute" alt="circle-image" />
                     <h4 class="font-weight-normal mb-3">Female Participants <i class="mdi mdi-diamond mdi-24px float-end"></i>
                     </h4>
-                    <h2 class="mb-5">72</h2>
+                    <h2 class="mb-5">272</h2>
                     <h6 class="card-text">Increased by 5%</h6>
                   </div>
                 </div>
               </div>
             </div>
-            
             <div class="row">
-              <div class="col-md-7 grid-margin stretch-card">
-                <div class="card">
-                  <div class="card-body">
-                    <div class="clearfix">
-                      <h4 class="card-title float-start">Visit And Sales Statistics</h4>
-                      <div id="visit-sale-chart-legend" class="rounded-legend legend-horizontal legend-top-right float-end"></div>
-                    </div>
-                    <canvas id="visit-sale-chart" class="mt-4"></canvas>
-                  </div>
-                </div>
-              </div>
+  <div class="col-md-7 grid-margin stretch-card">
+    <div class="card">
+      <div class="card-body">
+        <div class="clearfix">
+          <h4 class="card-title float-start">Year-wise Participation</h4>
+          <div id="year-chart-legend" class="rounded-legend legend-horizontal legend-top-right float-end"></div>
+        </div>
+        <canvas id="year-chart" width="400" height="200"></canvas>
+
+      </div>
+    </div>
+  </div>
+
             <div class="col-md-5 grid-margin stretch-card">
   <div class="card">
     <div class="card-body">
@@ -136,8 +137,18 @@
     </div>
   </div>
 </div>
+<div class="col-md-7 grid-margin stretch-card">
+  <div class="card">
+    <div class="card-body">
+      <h4 class="card-title">Department-wise Registration Count</h4>
+      <canvas id="dept-chart" style="height:300px;"></canvas>
+    </div>
+  </div>
+</div>
+
 
             </div>
+
             <div class="row">
               <div class="col-12 grid-margin">
                 <div class="card">
@@ -251,6 +262,93 @@ var clubChart = new Chart(ctx, {
 ;
 
     </script>
+    <script>
+  var ctx = document.getElementById("dept-chart").getContext('2d');
+  var deptChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: ['CSE', 'IT', 'ECE', 'EEE', 'MECH', 'CIVIL','MECT'], // Replace with your departments
+      datasets: [{
+        label: 'Number of Students',
+        data: [350, 280, 220, 150, 180, 134,123], // Replace with actual counts
+        backgroundColor: [
+  '#4e73df', // CSE
+  '#1cc88a', // IT
+  '#36b9cc', // ECE
+  '#f6c23e', // EEE
+  '#e74a3b', // MECH
+  '#8e44ad'  // CIVIL
+  
+],
+        borderColor: '#2e59d9',
+        borderWidth: 1,
+        borderRadius: 6
+      }]
+    },
+    options: {
+      responsive: true,
+      scales: {
+        y: {
+          beginAtZero: true,
+          title: {
+            display: true,
+            text: 'Students'
+          }
+        },
+        x: {
+          title: {
+            display: true,
+            text: 'Departments'
+          }
+        }
+      },
+      plugins: {
+        legend: {
+          display: false
+        }
+      }
+    }
+  });
+</script>
+<script>
+  var ctx = document.getElementById("year-chart").getContext('2d');
+  var yearChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: ['1st Year', '2nd Year', '3rd Year', '4th Year'],
+      datasets: [{
+        label: 'Number of Students',
+        data: [300, 500, 400, 200], // Replace with your real data
+        backgroundColor: ['#1abc9c', '#3498db', '#9b59b6', '#f39c12'],
+        borderRadius: 8
+      }]
+    },
+    options: {
+      responsive: true,
+      plugins: {
+        legend: {
+          display: false
+        }
+      },
+      scales: {
+        y: {
+          beginAtZero: true,
+          title: {
+            display: true,
+            text: 'Students'
+          }
+        },
+        x: {
+          title: {
+            display: true,
+            text: 'Academic Year'
+          }
+        }
+      }
+    }
+  });
+</script>
+
     <!-- End custom js for this page -->
   </body>
 </html>
