@@ -2,90 +2,221 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Student Club Filter Table</title>
+  <title>Club Enrollment Table</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <!-- Bootstrap CSS -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
-
-  <!-- DataTables CSS -->
-  <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css">
+  <!-- Bootstrap + DataTables CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/@mdi/font@7.2.96/css/materialdesignicons.min.css" rel="stylesheet">
 
   <style>
-    body {
-      background: #e9f7fd;
-      padding: 30px;
-    }
+  body {
+    background: #f4f6f8;
+    font-family: 'Segoe UI', sans-serif;
+  }
 
-    h2 {
-      text-align: center;
-      margin-bottom: 30px;
-      color: #007bff;
-    }
+  .navbar {
+    background-color: #ffffff;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    z-index: 1000;
+  }
 
-    table thead {
-      background-color: #007bff;
-      color: white;
-    }
+  .sidebar {
+    width: 220px;
+    background-color: #2c3e50;
+    color: #fff;
+    height: 100vh;
+    position: fixed;
+    top: 56px;
+    left: 0;
+    padding-top: 20px;
+  }
 
-    .form-select {
-      background-color: #fff5e1;
-    }
+  .sidebar .nav-link {
+    color: #dee2e6;
+    padding: 12px 20px;
+  }
+
+  .sidebar .nav-link:hover,
+  .sidebar .nav-link.active {
+    background-color: #34495e;
+    color: #fff;
+  }
+
+  .sidebar .menu-icon {
+    margin-right: 10px;
+  }
+
+  .page-content {
+    margin-left: 220px;
+    padding: 80px 30px 30px 30px;
+  }
+
+  h2 {
+    color: #2c3e50;
+    font-weight: 700;
+    margin-bottom: 30px;
+    text-align: center;
+  }
+
+  .form-label {
+    font-weight: 600;
+    color: #2c3e50;
+  }
+
+  .form-select {
+    background-color: #fef9e7;
+    border-color: #dadfe1;
+    color: #2c3e50;
+    font-weight: 500;
+    border-radius: 6px;
+  }
+
+  .form-select:focus {
+    border-color: #2c3e50;
+    box-shadow: 0 0 6px rgba(44, 62, 80, 0.3);
+  }
+
+  table.dataTable {
+    border: 1px solid #dadfe1;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    background-color: #ffffff;
+  }
+
+  table.dataTable thead {
+    background-color: #2c3e50;
+    color: #ffffff;
+    font-weight: bold;
+    font-size: 1rem;
+  }
+
+  table.dataTable tbody tr:nth-of-type(even) {
+    background-color: #f8f9fa;
+  }
+
+  table.dataTable tbody tr:nth-of-type(odd) {
+    background-color: #ffffff;
+  }
+
+  table.dataTable tbody tr:hover {
+    background-color: #ecf0f1;
+  }
+
+  .dataTables_wrapper .dataTables_filter input,
+  .dataTables_wrapper .dataTables_length select {
+    border: 1px solid #dadfe1;
+    border-radius: 6px;
+    padding: 6px;
+    background-color: #ffffff;
+    color: #2c3e50;
+  }
+
+  .dataTables_wrapper .dataTables_paginate .paginate_button {
+    border-radius: 4px;
+    margin: 2px;
+    padding: 5px 10px;
+    background-color: #ecf0f1;
+    border: none;
+    color: #2c3e50;
+  }
+
+  .dataTables_wrapper .dataTables_paginate .paginate_button.current {
+    background-color: #2c3e50 !important;
+    color: #ffffff !important;
+  }
+
+  .dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+    background-color: #34495e;
+    color: #ffffff;
+  }
   </style>
 </head>
 <body>
 
-  <div class="container">
-    <h2>Club Enrollment Table</h2>
-
-    <div class="row mb-4">
-      <div class="col-md-6">
-        <label class="form-label">Department Filter</label>
-        <select id="deptFilter" class="form-select">
-          <option value="">All</option>
-          <option value="CSE">CSE</option>
-          <option value="ECE">ECE</option>
-          <option value="EEE">EEE</option>
-        </select>
-      </div>
-      <div class="col-md-6">
-        <label class="form-label">Club Filter</label>
-        <select id="clubFilter" class="form-select">
-          <option value="">All</option>
-          <option value="Robotics Club">Robotics Club</option>
-          <option value="Coding Club">Coding Club</option>
-          <option value="Dance Club">Dance Club</option>
-        </select>
-      </div>
+  <!-- NAVBAR -->
+  <nav class="navbar navbar-expand-lg fixed-top p-3">
+    <div class="container-fluid d-flex justify-content-between">
+      <h5 class="mb-0 text-dark">ENROLLMENT TABLE</h5>
+      <a href="logout.html" class="btn btn-outline-danger">
+        <i class="mdi mdi-logout me-1"></i> Sign Out
+      </a>
     </div>
+  </nav>
 
-    <table id="clubTable" class="table table-striped">
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Department</th>
-          <th>Club Enrolled</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr><td>Arya</td><td>CSE</td><td>Robotics Club</td></tr>
-        <tr><td>Karan</td><td>ECE</td><td>Coding Club</td></tr>
-        <tr><td>Divya</td><td>EEE</td><td>Dance Club</td></tr>
-        <tr><td>Neha</td><td>CSE</td><td>Coding Club</td></tr>
-        <tr><td>Manoj</td><td>ECE</td><td>Robotics Club</td></tr>
-        <tr><td>Sanjay</td><td>EEE</td><td>Coding Club</td></tr>
-        <tr><td>Pooja</td><td>CSE</td><td>Dance Club</td></tr>
-      </tbody>
-    </table>
+  <!-- SIDEBAR -->
+  <nav class="sidebar" id="sidebar">
+    <ul class="nav flex-column">
+      <li class="nav-item">
+        <a class="nav-link" href="dashboard.html">
+          <i class="mdi mdi-home menu-icon"></i><span class="menu-title">Dashboard</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="form.html">
+          <i class="mdi mdi-plus-box menu-icon"></i><span class="menu-title">Add New Club</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link active" href="tables.html">
+          <i class="mdi mdi-table-large menu-icon"></i><span class="menu-title">Tables</span>
+        </a>
+      </li>
+    </ul>
+  </nav>
+
+  <!-- MAIN CONTENT -->
+  <div class="page-content">
+    <div class="container-fluid">
+      <h2>Club Enrollment Table</h2>
+
+      <div class="row mb-4">
+        <div class="col-md-6">
+          <label class="form-label">Department Filter</label>
+          <select id="deptFilter" class="form-select">
+            <option value="">All</option>
+            <option value="CSE">CSE</option>
+            <option value="ECE">ECE</option>
+            <option value="EEE">EEE</option>
+          </select>
+        </div>
+        <div class="col-md-6">
+          <label class="form-label">Club Filter</label>
+          <select id="clubFilter" class="form-select">
+            <option value="">All</option>
+            <option value="Robotics Club">Robotics Club</option>
+            <option value="Coding Club">Coding Club</option>
+            <option value="Dance Club">Dance Club</option>
+          </select>
+        </div>
+      </div>
+
+      <table id="clubTable" class="table table-bordered table-striped">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Department</th>
+            <th>Club Enrolled</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Arya</td><td>CSE</td><td>Robotics Club</td></tr>
+          <tr><td>Karan</td><td>ECE</td><td>Coding Club</td></tr>
+          <tr><td>Divya</td><td>EEE</td><td>Dance Club</td></tr>
+          <tr><td>Neha</td><td>CSE</td><td>Coding Club</td></tr>
+          <tr><td>Manoj</td><td>ECE</td><td>Robotics Club</td></tr>
+          <tr><td>Sanjay</td><td>EEE</td><td>Coding Club</td></tr>
+          <tr><td>Pooja</td><td>CSE</td><td>Dance Club</td></tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 
-  <!-- jQuery -->
+  <!-- JS SCRIPTS -->
   <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
-
-  <!-- Bootstrap JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-
-  <!-- DataTables JS -->
   <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
   <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
 
@@ -94,16 +225,13 @@
       const table = $('#clubTable').DataTable();
 
       $('#deptFilter').on('change', function () {
-        const dept = $(this).val();
-        table.column(1).search(dept, false, false).draw();
+        table.column(1).search(this.value).draw();
       });
 
       $('#clubFilter').on('change', function () {
-        const club = $(this).val();
-        table.column(2).search(club, false, false).draw();
+        table.column(2).search(this.value).draw();
       });
     });
   </script>
-
 </body>
 </html>
