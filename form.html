@@ -1,28 +1,213 @@
-<div class="d-flex justify-content-center align-items-center" style="height: 100%;">
-  <div class="card" style="width: 100%; max-width: 500px; box-shadow: 0 0 15px rgba(0,0,0,0.1);">
-    <div class="card-body">
-      <h4 class="card-title text-center mb-4">Add New Club</h4>
-      <form class="forms-sample">
-        <div class="form-group">
-          <label for="clubName">Club Name</label>
-          <input type="text" class="form-control" id="clubName" placeholder="Enter club name">
-        </div>
-        <div class="form-group">
-          <label for="mission">Mission</label>
-          <input type="text" class="form-control" id="mission" placeholder="Enter mission">
-        </div>
-        <div class="form-group">
-          <label for="staffCoordinator">Staff Co-ordinator</label>
-          <input type="text" class="form-control" id="staffCoordinator" placeholder="Enter coordinator name">
-        </div>
-        <div class="form-group">
-          <label for="yearStart">Year of Start</label>
-          <input type="number" class="form-control" id="yearStart" placeholder="Enter year">
-        </div>
-        <button type="submit" class="btn btn-gradient-primary w-100 mt-3">Submit</button>
-      </form>
-       
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Club Enrollment Table</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Bootstrap + DataTables CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/@mdi/font@7.2.96/css/materialdesignicons.min.css" rel="stylesheet">
+
+  <style>
+  body {
+    background: #f4f6f8;
+    font-family: 'Segoe UI', sans-serif;
+  }
+
+  .navbar {
+    background-color: #ffffff;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    z-index: 1000;
+  }
+
+  .sidebar {
+    width: 220px;
+    background-color: #2c3e50;
+    color: #fff;
+    height: 100vh;
+    position: fixed;
+    top: 56px;
+    left: 0;
+    padding-top: 20px;
+  }
+
+  .sidebar .nav-link {
+    color: #dee2e6;
+    padding: 12px 20px;
+  }
+
+  .sidebar .nav-link:hover,
+  .sidebar .nav-link.active {
+    background-color: #34495e;
+    color: #fff;
+  }
+
+  .sidebar .menu-icon {
+    margin-right: 10px;
+  }
+
+  .page-content {
+    margin-left: 220px;
+    padding: 80px 30px 30px 30px;
+  }
+
+  h2 {
+    color: #2c3e50;
+    font-weight: 700;
+    margin-bottom: 30px;
+    text-align: center;
+  }
+
+  .form-label {
+    font-weight: 600;
+    color: #2c3e50;
+  }
+
+  .form-select {
+    background-color: #fef9e7;
+    border-color: #dadfe1;
+    color: #2c3e50;
+    font-weight: 500;
+    border-radius: 6px;
+  }
+
+  .form-select:focus {
+    border-color: #2c3e50;
+    box-shadow: 0 0 6px rgba(44, 62, 80, 0.3);
+  }
+
+  table.dataTable {
+    border: 1px solid #dadfe1;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    background-color: #ffffff;
+  }
+
+  table.dataTable thead {
+    background-color: #2c3e50;
+    color: #ffffff;
+    font-weight: bold;
+    font-size: 1rem;
+  }
+
+  table.dataTable tbody tr:nth-of-type(even) {
+    background-color: #f8f9fa;
+  }
+
+  table.dataTable tbody tr:nth-of-type(odd) {
+    background-color: #ffffff;
+  }
+
+  table.dataTable tbody tr:hover {
+    background-color: #ecf0f1;
+  }
+
+  .dataTables_wrapper .dataTables_filter input,
+  .dataTables_wrapper .dataTables_length select {
+    border: 1px solid #dadfe1;
+    border-radius: 6px;
+    padding: 6px;
+    background-color: #ffffff;
+    color: #2c3e50;
+  }
+
+  .dataTables_wrapper .dataTables_paginate .paginate_button {
+    border-radius: 4px;
+    margin: 2px;
+    padding: 5px 10px;
+    background-color: #ecf0f1;
+    border: none;
+    color: #2c3e50;
+  }
+
+  .dataTables_wrapper .dataTables_paginate .paginate_button.current {
+    background-color: #2c3e50 !important;
+    color: #ffffff !important;
+  }
+
+  .dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+    background-color: #34495e;
+    color: #ffffff;
+  }
+
+  .btn-primary:hover {
+    background-color: #0056b3 !important;
+    border-color: #0056b3 !important;
+  }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar navbar-expand-lg fixed-top p-3">
+    <div class="container-fluid d-flex justify-content-between">
+      <h5 class="mb-0 text-dark">add new club</h5>
+      <a href="logout.html" class="btn btn-outline-danger">
+        <i class="mdi mdi-logout me-1"></i> Sign Out
+      </a>
     </div>
-    
+  </nav>
+
+  <!-- SIDEBAR -->
+  <nav class="sidebar" id="sidebar">
+    <ul class="nav flex-column">
+      <li class="nav-item">
+        <a class="nav-link" href="index.html">
+          <i class="mdi mdi-home menu-icon"></i><span class="menu-title">Dashboard</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link active" href="form.html">
+          <i class="mdi mdi-plus-box menu-icon"></i><span class="menu-title">Add New Club</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="tables.html">
+          <i class="mdi mdi-table-large menu-icon"></i><span class="menu-title">Tables</span>
+        </a>
+      </li>
+    </ul>
+  </nav>
+
+  <!-- FORM CENTERED CARD -->
+  <div class="d-flex justify-content-center align-items-center" style="min-height: 100vh; margin-left: 220px; background: #f4f6f8;">
+    <div class="card p-4" style="width: 100%; max-width: 500px; box-shadow: 0 0 15px rgba(0,0,0,0.1); border-radius: 12px;">
+      <div class="card-body">
+        <h4 class="card-title text-center mb-4" style="color: #2c3e50; font-weight: 600;">Add New Club</h4>
+        <form id="clubForm" class="forms-sample">
+          <div class="mb-3">
+            <label for="clubName" class="form-label">Club Name</label>
+            <input type="text" class="form-control" id="clubName" placeholder="Enter club name">
+          </div>
+          <div class="mb-3">
+            <label for="mission" class="form-label">Mission</label>
+            <input type="text" class="form-control" id="mission" placeholder="Enter mission">
+          </div>
+          <div class="mb-3">
+            <label for="staffCoordinator" class="form-label">Staff Co-ordinator</label>
+            <input type="text" class="form-control" id="staffCoordinator" placeholder="Enter coordinator name">
+          </div>
+          <div class="mb-3">
+            <label for="yearStart" class="form-label">Year of Start</label>
+            <input type="number" class="form-control" id="yearStart" placeholder="Enter year">
+          </div>
+          <button type="submit" class="btn btn-primary w-100" style="transition: background-color 0.3s;">Submit</button>
+        </form>
+      </div>
+    </div>
   </div>
-</div>
+
+  <!-- SCRIPT FOR REDIRECTION -->
+  <script>
+    document.getElementById("clubForm").addEventListener("submit", function(e) {
+      e.preventDefault(); // Prevent form reload
+      // Optional: Add validation here
+      window.location.href = "index.html"; // Redirect to dashboard
+    });
+  </script>
+
+</body>
+</html>

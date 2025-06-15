@@ -62,24 +62,7 @@
     text-align: center;
   }
 
-  .form-label {
-    font-weight: 600;
-    color: #2c3e50;
-  }
-
-  .form-select {
-    background-color: #fef9e7;
-    border-color: #dadfe1;
-    color: #2c3e50;
-    font-weight: 500;
-    border-radius: 6px;
-  }
-
-  .form-select:focus {
-    border-color: #2c3e50;
-    box-shadow: 0 0 6px rgba(44, 62, 80, 0.3);
-  }
-
+  
   </style>
 </head>
 <body>
@@ -119,122 +102,87 @@
   <div class="main-panel flex-grow-1" style="margin-left: 250px; padding-top: 0px;">
   <div class="content-wrapper pt-0 px-4 pb-4">
     
-    <!-- Dashboard Header -->
-    <div class="row mb-4">
-      <div class="col-12">
-        <h3 class="text-dark fw-bold">Dashboard Overview</h3>
-        <p class="text-muted">Visual summary of club enrollment data</p>
-      </div>
-    </div>
-
-    <!-- Stats Cards -->
-    <div class="row g-4 mb-4">
-      <div class="col-md-4">
-        <div class="card text-white bg-danger h-100 shadow-sm rounded-4">
-          <div class="card-body">
-            <h5 class="card-title">Total Registrations</h5>
-            <h2 class="fw-bold">459</h2>
-            <p class="mb-0">📈 60% ↑ this month</p>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="card text-white bg-info h-100 shadow-sm rounded-4">
-          <div class="card-body">
-            <h5 class="card-title">Club Applications</h5>
-            <h2 class="fw-bold">2903</h2>
-            <p class="mb-0">📉 10% ↓ this month</p>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="card text-white bg-success h-100 shadow-sm rounded-4">
-          <div class="card-body">
-            <h5 class="card-title">Female Participants</h5>
-            <h2 class="fw-bold">272</h2>
-            <p class="mb-0">📈 5% ↑ this month</p>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Chart Row: Year, Club, Dept -->
-    <div class="row g-4 mb-4">
-      <div class="col-md-4">
-        <div class="card shadow-sm h-100 rounded-4">
-          <div class="card-body text-center">
-            <h6 class="fw-semibold mb-3">Year-wise Participation</h6>
-            <canvas id="year-chart" height="150"></canvas>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="card shadow-sm h-100 rounded-4">
-          <div class="card-body text-center">
-            <h6 class="fw-semibold mb-3">Club Distribution</h6>
-            <canvas id="club-chart" height="150"></canvas>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="card shadow-sm h-100 rounded-4">
-          <div class="card-body text-center">
-            <h6 class="fw-semibold mb-3">Department-wise Count</h6>
-            <canvas id="dept-chart" height="150"></canvas>
-          </div>
-        </div>
-      </div>
-    </div>
-
-
-    <!-- Second Row: 2 Charts -->
-    <!-- Second Row: Line + Bar Charts -->
+   <!-- Dashboard Header -->
+<div class="row mb-4">
+  <div class="col-12">
+    <h3 class="text-dark fw-bold mt-0">Club Enrollment Dashboard</h3>
+    <p class="text-muted">Live overview of club enrollments by 1st year students</p>
+  </div>
+</div>
+<!-- Cards Row: Pastel Style -->
 <div class="row g-4 mb-4">
-  <div class="col-md-6">
-    <div class="card shadow-sm h-100 rounded-4">
-      <div class="card-body text-center">
-        <h6 class="fw-semibold mb-3">📈 Monthly Registrations Trend</h6>     
-        <canvas id="lineChart" height="180"></canvas>
+  <div class="col-md-4">
+    <div class="card text-dark shadow-sm" style="background-color: #fff2e6	; border-radius: 1rem;">
+      <div class="card-body">
+        <h5 class="card-title">Total Club Applications</h5>
+        <h2 class="fw-bold">2903</h2>
+        <p class="mb-0">Based on all submissions</p>
       </div>
     </div>
   </div>
-  <div class="col-md-6">
-    <div class="card shadow-sm h-100 rounded-4">
-      <div class="card-body text-center">
-        <h6 class="fw-semibold mb-3">🏆 Top 5 Clubs with Most Applications</h6>     
-        <canvas id="barChart" height="180"></canvas>
+  <div class="col-md-4">
+    <div class="card text-dark shadow-sm" style="background-color: #d2f1f0; border-radius: 1rem;">
+      <div class="card-body">
+        <h5 class="card-title">Total Distinct Students</h5>
+        <h2 class="fw-bold">1087</h2>
+        <p class="mb-0">Unique student count</p>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="card text-dark shadow-sm" style="background-color: #ffe4ec; border-radius: 1rem;">
+      <div class="card-body">
+        <h5 class="card-title">Girls Enrolled</h5>
+        <h2 class="fw-bold">272</h2>
+        <p class="mb-0">Female participants</p>
       </div>
     </div>
   </div>
 </div>
 
-<!-- Third Row: 3 Charts -->
+
+
+<!-- Charts Row: Dept-wise and Popular Clubs -->
 <div class="row g-4 mb-4">
-  <div class="col-md-4">
-    <div class="card shadow-sm h-100 rounded-4">
+  <div class="col-md-6">
+    <div class="card shadow-sm rounded-4">
       <div class="card-body text-center">
-        <h6 class="fw-semibold mb-3">📊 Cumulative Applications Over Time</h6>
-        <canvas id="areaChart" height="180"></canvas>
+        <h6 class="fw-semibold mb-3">📊 Department-wise Distribution</h6>
+        <canvas id="dept-chart" height="180"></canvas>
       </div>
     </div>
   </div>
-  <div class="col-md-4">
-    <div class="card shadow-sm h-100 rounded-4">
+  <div class="col-md-6">
+    <div class="card shadow-sm rounded-4">
       <div class="card-body text-center">
-        <h6 class="fw-semibold mb-3">🔍 Preferred Clubs by Stream</h6>
-        <canvas id="doughnutChart" height="180"></canvas>
-      </div>
-    </div>
-  </div>
-  <div class="col-md-4">
-    <div class="card shadow-sm h-100 rounded-4">
-      <div class="card-body text-center">
-        <h6 class="fw-semibold mb-3">🚻 Gender Ratio of Applicants</h6>
-        <canvas id="pieChart" height="180"></canvas>
+        <h6 class="fw-semibold mb-3">🌟 Top 3 Popular Clubs</h6>
+        <canvas id="popular-clubs-chart" height="180"></canvas>
       </div>
     </div>
   </div>
 </div>
+
+<!-- Charts Row: Underrated and Club Distribution -->
+<div class="row g-4 mb-4">
+  <div class="col-md-6">
+    <div class="card shadow-sm rounded-4">
+      <div class="card-body text-center">
+        <h6 class="fw-semibold mb-3">🕳️ Top 3 Less preferred clubs</h6>
+        <canvas id="underrated-clubs-chart" height="180"></canvas>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="card shadow-sm rounded-4">
+      <div class="card-body text-center">
+        <h6 class="fw-semibold mb-3">🎯 Overall Club Distribution</h6>
+        <canvas id="club-distribution-chart" height="180"></canvas>
+      </div>
+    </div>
+  </div>
+</div>
+
+
 <div class="row">
   <div class="col-12 grid-margin">
     <div class="card shadow-sm rounded-4">
@@ -248,7 +196,7 @@
                 <th scope="col">Club Name</th>
                 <th scope="col">Status</th>
                 <th scope="col">Applied On</th>
-                <th scope="col">Reg. ID</th>
+               
               </tr>
             </thead>
             <tbody>
@@ -260,7 +208,6 @@
                   </div>
                 </td>
                 <td>App Development Club</td>
-                <td><span class="badge bg-success-subtle text-success fw-semibold">Approved</span></td>
                 <td>June 12, 2025</td>
                 <td>23IT167</td>
               </tr>
@@ -272,7 +219,6 @@
                   </div>
                 </td>
                 <td>IOT Club</td>
-                <td><span class="badge bg-warning-subtle text-warning fw-semibold">Pending</span></td>
                 <td>June 10, 2025</td>
                 <td>22IT165</td>
               </tr>
@@ -284,7 +230,6 @@
                   </div>
                 </td>
                 <td>Coders Club</td>
-                <td><span class="badge bg-info-subtle text-info fw-semibold">Waiting List</span></td>
                 <td>June 8, 2025</td>
                 <td>24IT89</td>
               </tr>
@@ -296,7 +241,6 @@
                   </div>
                 </td>
                 <td>MATH Club</td>
-                <td><span class="badge bg-danger-subtle text-danger fw-semibold">Rejected</span></td>
                 <td>June 7, 2025</td>
                 <td>23IT009</td>
               </tr>
@@ -332,234 +276,101 @@
     <!-- endinject -->
     <!-- Custom js for this page -->
     <script src="assets/js/dashboard.js"></script>
-    <script>
-var ctx = document.getElementById("club-chart").getContext('2d');
-var clubChart = new Chart(ctx, {
-  type: 'doughnut',
-  data: {
-    labels: ['Coders Club', 'IOT Club', 'Happy Hive', 'Kernel Klub', 'Other'],
-    datasets: [{
-      data: [830, 500, 200, 160, 915],
-      backgroundColor: ['#4e73df', '#1cc88a', '#f6c23e', '#36b9cc', '#e74a3b']
-    }]
-  },
-  options: {
-    responsive: true,
-    plugins: {
-      legend: {
-        display: true,
-        position: 'bottom'
-      }
-    }
-  }
-});
-;
-
-    </script>
-    <script>
-  var ctx = document.getElementById("dept-chart").getContext('2d');
-  var deptChart = new Chart(ctx, {
-    type: 'bar',
-    data: {
-      labels: ['CSE', 'IT', 'ECE', 'EEE', 'MECH', 'CIVIL','MECT'], // Replace with your departments
-      datasets: [{
-        label: 'Number of Students',
-        data: [350, 280, 220, 150, 180, 134,123], // Replace with actual counts
-        backgroundColor: [
-  '#4e73df', // CSE
-  '#1cc88a', // IT
-  '#36b9cc', // ECE
-  '#f6c23e', // EEE
-  '#e74a3b', // MECH
-  '#8e44ad'  // CIVIL
-  
-],
-        borderColor: '#2e59d9',
-        borderWidth: 1,
-        borderRadius: 6
-      }]
-    },
-    options: {
-      responsive: true,
-      scales: {
-        y: {
-          beginAtZero: true,
-          title: {
-            display: true,
-            text: 'Students'
-          }
-        },
-        x: {
-          title: {
-            display: true,
-            text: 'Departments'
-          }
-        }
-      },
-      plugins: {
-        legend: {
-          display: false
-        }
-      }
-    }
-  });
-</script>
+   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
-  var ctx = document.getElementById("year-chart").getContext('2d');
-  var yearChart = new Chart(ctx, {
-    type: 'bar',
+  const pastelColors = ["#f3e8ff", "#d2f1f0", "#ffe4ec", "#fff7d1", "#d7fcd4", "#c4f0ff", "#fcdada"];
+
+  // 1. Department-wise Chart
+  new Chart(document.getElementById("dept-chart"), {
+    type: "bar",
     data: {
-      labels: ['1st Year', '2nd Year', '3rd Year', '4th Year'],
+      labels: ["CSE", "ECE", "EEE", "MECH", "CIVIL", "IT", "MECT"],
       datasets: [{
-        label: 'Number of Students',
-        data: [300, 500, 400, 200], // Replace with your real data
-        backgroundColor: ['#1abc9c', '#3498db', '#9b59b6', '#f39c12'],
-        borderRadius: 8
+        label: "Students",
+        data: [300, 180, 150, 90, 65, 190, 70],
+        backgroundColor: pastelColors.slice(0, 7)
+      }]
+    },
+    options: {
+      responsive: true,
+      plugins: { legend: { display: false } },
+      scales: {
+        y: {
+          beginAtZero: true,
+          title: { display: true, text: "Students" }
+        },
+        x: {
+          title: { display: true, text: "Department" }
+        }
+      }
+    }
+  });
+
+  // 2. Top 3 Popular Clubs
+  new Chart(document.getElementById("popular-clubs-chart"), {
+    type: "bar",
+    data: {
+      labels: ["Coding Club", "Music Club", "Drama Club"],
+      datasets: [{
+        label: "Applications",
+        data: [450, 400, 350],
+        backgroundColor: pastelColors.slice(0, 3)
+      }]
+    },
+    options: {
+      responsive: true,
+      plugins: { legend: { display: false } },
+      scales: {
+        y: { beginAtZero: true },
+        x: { title: { display: false } }
+      }
+    }
+  });
+
+  // 3. Top 3 Underrated Clubs
+  new Chart(document.getElementById("underrated-clubs-chart"), {
+    type: "bar",
+    data: {
+      labels: ["Eco Club", "Photography", "Chess Club"],
+      datasets: [{
+        label: "Applications",
+        data: [40, 55, 60],
+        backgroundColor: pastelColors.slice(3, 6)
+      }]
+    },
+    options: {
+      responsive: true,
+      plugins: { legend: { display: false } },
+      scales: {
+        y: { beginAtZero: true },
+        x: { title: { display: false } }
+      }
+    }
+  });
+
+  // 4. Club Distribution
+  new Chart(document.getElementById("club-distribution-chart"), {
+    type: "doughnut",
+    data: {
+      labels: ["Coding", "Music", "Drama", "Eco", "Dance"],
+      datasets: [{
+        data: [450, 400, 350, 150, 200],
+        backgroundColor: pastelColors.slice(0, 5)
       }]
     },
     options: {
       responsive: true,
       plugins: {
         legend: {
-          display: false
-        }
-      },
-      scales: {
-        y: {
-          beginAtZero: true,
-          title: {
-            display: true,
-            text: 'Students'
-          }
-        },
-        x: {
-          title: {
-            display: true,
-            text: 'Academic Year'
-          }
+          position: "bottom",
+          labels: { color: "#333", boxWidth: 20 }
         }
       }
     }
   });
 </script>
-<script>// Line Chart - New Enrollments Over Time
-new Chart(document.getElementById("lineChart"), {
-  type: 'line',
-  data: {
-    labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun"],
-    datasets: [{
-      label: "Enrollments",
-      data: [15, 30, 45, 60, 80, 100],
-      borderColor: "#4B49AC",
-      fill: false,
-      tension: 0.3
-    }]
-  },
-  options: {
-    responsive: true
-  }
-});
 
-// Bar Chart - Club-wise Enrollment
-new Chart(document.getElementById("barChart"), {
-  type: 'bar',
-  data: {
-    labels: ["Coding", "Dance", "Drama", "Music", "Literature"],
-    datasets: [{
-      label: "Members",
-      data: [50, 40, 30, 45, 35],
-      backgroundColor: "#FFC107"
-    }]
-  },
-  options: {
-    responsive: true
-  }
-});
 
-// Area Chart - Weekly Growth
-new Chart(document.getElementById("areaChart"), {
-  type: 'line',
-  data: {
-    labels: ["Week 1", "Week 2", "Week 3", "Week 4"],
-    datasets: [{
-      label: "Growth",
-      data: [5, 20, 35, 50],
-      backgroundColor: "rgba(0, 123, 255, 0.2)",
-      borderColor: "#007bff",
-      fill: true,
-      tension: 0.4
-    }]
-  },
-  options: {
-    responsive: true
-  }
-});
-
-// Doughnut Chart - Club Category Distribution
-new Chart(document.getElementById("doughnutChart"), {
-  type: 'doughnut',
-  data: {
-    labels: ["Technical", "Cultural", "Sports", "Arts"],
-    datasets: [{
-      data: [40, 30, 15, 15],
-      backgroundColor: ["#4B49AC", "#FFC107", "#FF4747", "#00C292"]
-    }]
-  },
-  options: {
-    responsive: true
-  }
-});
-
-// Pie Chart - Gender Ratio
-new Chart(document.getElementById("pieChart"), {
-  type: 'pie',
-  data: {
-    labels: ["Male", "Female", "Other"],
-    datasets: [{
-      data: [45, 50, 5],
-      backgroundColor: ["#4B49AC", "#FF4747", "#00C292"]
-    }]
-  },
-  options: {
-    responsive: true
-  }
-});
-
-// Scatter Chart - Event Participation vs Feedback Score
-new Chart(document.getElementById("scatterChart"), {
-  type: 'scatter',
-  data: {
-    datasets: [{
-      label: 'Events',
-      data: [
-        { x: 10, y: 3 },
-        { x: 15, y: 4 },
-        { x: 8, y: 2 },
-        { x: 20, y: 5 },
-        { x: 12, y: 4.5 }
-      ],
-      backgroundColor: "#4B49AC"
-    }]
-  },
-  options: {
-    scales: {
-      x: {
-        title: {
-          display: true,
-          text: "Participants"
-        }
-      },
-      y: {
-        title: {
-          display: true,
-          text: "Feedback Score"
-        }
-      }
-    },
-    responsive: true
-  }
-});
-</script>
 <!-- Chart.js Library -->
 <script src="../../assets/vendors/chart.js/chart.umd.js"></script>
 
