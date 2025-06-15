@@ -14,55 +14,111 @@
       min-height: 80vh;
       padding: 2rem;
     }
+    body {
+    background: #f4f6f8;
+    font-family: 'Segoe UI', sans-serif;
+  }
+
+  .navbar {
+    background-color: #ffffff;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    z-index: 1000;
+  }
+
+  .sidebar {
+    width: 220px;
+    background-color: #2c3e50;
+    color: #fff;
+    height: 100vh;
+    position: fixed;
+    top: 56px;
+    left: 0;
+    padding-top: 20px;
+  }
+
+  .sidebar .nav-link {
+    color: #dee2e6;
+    padding: 12px 20px;
+  }
+
+  .sidebar .nav-link:hover,
+  .sidebar .nav-link.active {
+    background-color: #34495e;
+    color: #fff;
+  }
+
+  .sidebar .menu-icon {
+    margin-right: 10px;
+  }
+
+  .page-content {
+    margin-left: 220px;
+    padding: 80px 20px 20px 30px;
+  }
+  h2 {
+    color: #2c3e50;
+    font-weight: 700;
+    margin-bottom: 30px;
+    text-align: center;
+  }
+
+  .form-label {
+    font-weight: 600;
+    color: #2c3e50;
+  }
+
+  .form-select {
+    background-color: #fef9e7;
+    border-color: #dadfe1;
+    color: #2c3e50;
+    font-weight: 500;
+    border-radius: 6px;
+  }
+
+  .form-select:focus {
+    border-color: #2c3e50;
+    box-shadow: 0 0 6px rgba(44, 62, 80, 0.3);
+  }
+
   </style>
 </head>
 <body>
-  <div class="container-scroller">
-    <!-- Top Navbar -->
-    <nav class="navbar default-layout-navbar col-12 p-3 fixed-top d-flex justify-content-between" style="background-color: #f8f9fa;">
-      <h4 class="mb-0 text-dark">Admin Dashboard</h4>
-      <a href="logout.html" class="btn btn-outline-danger">
-        <i class="mdi mdi-logout me-1"></i> Sign Out
-      </a>
-    </nav>
+<!-- Top Navbar -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top shadow-sm">
+  <div class="container-fluid d-flex justify-content-between align-items-center">
+    <h4 class="mb-0 text-dark">Admin Dashboard</h4>
+    <a href="logout.html" class="btn btn-outline-danger">
+      <i class="mdi mdi-logout me-1"></i> Sign Out
+    </a>
+  </div>
+</nav>
+<div class="container-scroller"></div>
+    <div class="container-fluid page-body-wrapper d-flex" style="margin-top: 70px;">
+  <!-- Sidebar -->
+  <nav class="bg-dark text-white p-3" style="width: 250px; min-height: 100vh; position: fixed; top: 60px; left: 0;">
+    <ul class="nav flex-column">
+      <li class="nav-item mb-2">
+        <a class="nav-link text-white" href="#" data-page="dashboard.html">
+          <i class="mdi mdi-home me-2"></i> Dashboard
+        </a>
+      </li>
+      <li class="nav-item mb-2">
+        <a class="nav-link text-white" href="#" data-page="form.html">
+          <i class="mdi mdi-plus-box me-2"></i> Add New Club
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-white" href="tables.html" data-page="tables.html">
+          <i class="mdi mdi-table-large me-2"></i> Tables
+        </a>
+      </li>
+    </ul>
+  </nav>
 
-    <div class="container-fluid page-body-wrapper pt-5">
-      <!-- Sidebar -->
-      <nav class="sidebar sidebar-offcanvas" id="sidebar">
-        <ul class="nav">
-          <li class="nav-item nav-profile">
-            <a href="#" class="nav-link">
-              <div class="nav-profile-image">
-                <img src="assets/images/faces/face1.jpg" alt="profile" />
-              </div>
-              <div class="nav-profile-text d-flex flex-column">
-                <span class="font-weight-bold mb-2">Principal</span>
-              </div>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#" data-page="dashboard.html">
-              <span class="menu-title">Dashboard</span>
-              <i class="mdi mdi-home menu-icon"></i>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#" data-page="form.html">
-              <span class="menu-title">Add New Club</span>
-              <i class="mdi mdi-plus-box menu-icon"></i>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="tables.html" data-page="tables.html">
-              <span class="menu-title">Tables</span>
-              <i class="mdi mdi-table-large menu-icon"></i>
-            </a>
-          </li>
-        </ul>
-      </nav>
-<div class="main-panel w-100">
-  <div class="content-wrapper p-3">
-
+  <!-- Main Panel -->
+  <div class="main-panel flex-grow-1" style="margin-left: 250px; padding-top: 0px;">
+  <div class="content-wrapper pt-0 px-4 pb-4">
+    
     <!-- Dashboard Header -->
     <div class="row mb-4">
       <div class="col-12">
@@ -72,179 +128,177 @@
     </div>
 
     <!-- Stats Cards -->
-    <div class="row row-cols-1 row-cols-md-3 g-4 mb-4">
-      <div class="col">
-        <div class="card bg-gradient-danger text-white h-100">
+    <div class="row g-4 mb-4">
+      <div class="col-md-4">
+        <div class="card text-white bg-danger h-100 shadow-sm rounded-4">
           <div class="card-body">
-            <h4>Total Registrations</h4>
-            <h2>459</h2>
-            <p>↑ 60% this month</p>
+            <h5 class="card-title">Total Registrations</h5>
+            <h2 class="fw-bold">459</h2>
+            <p class="mb-0">📈 60% ↑ this month</p>
           </div>
         </div>
       </div>
-      <div class="col">
-        <div class="card bg-gradient-info text-white h-100">
+      <div class="col-md-4">
+        <div class="card text-white bg-info h-100 shadow-sm rounded-4">
           <div class="card-body">
-            <h4>Club Applications</h4>
-            <h2>2903</h2>
-            <p>↓ 10% this month</p>
+            <h5 class="card-title">Club Applications</h5>
+            <h2 class="fw-bold">2903</h2>
+            <p class="mb-0">📉 10% ↓ this month</p>
           </div>
         </div>
       </div>
-      <div class="col">
-        <div class="card bg-gradient-success text-white h-100">
+      <div class="col-md-4">
+        <div class="card text-white bg-success h-100 shadow-sm rounded-4">
           <div class="card-body">
-            <h4>Female Participants</h4>
-            <h2>272</h2>
-            <p>↑ 5% this month</p>
+            <h5 class="card-title">Female Participants</h5>
+            <h2 class="fw-bold">272</h2>
+            <p class="mb-0">📈 5% ↑ this month</p>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- First Row: 3 Charts -->
-    <div class="row row-cols-1 row-cols-md-3 g-4 mb-4">
-      <div class="col">
-        <div class="card h-100">
+    <!-- Chart Row: Year, Club, Dept -->
+    <div class="row g-4 mb-4">
+      <div class="col-md-4">
+        <div class="card shadow-sm h-100 rounded-4">
           <div class="card-body text-center">
-            <h6 class="mb-3">Year-wise Participation</h6>
+            <h6 class="fw-semibold mb-3">Year-wise Participation</h6>
             <canvas id="year-chart" height="150"></canvas>
           </div>
         </div>
       </div>
-      <div class="col">
-        <div class="card h-100">
+      <div class="col-md-4">
+        <div class="card shadow-sm h-100 rounded-4">
           <div class="card-body text-center">
-            <h6 class="mb-3">Club Distribution</h6>
+            <h6 class="fw-semibold mb-3">Club Distribution</h6>
             <canvas id="club-chart" height="150"></canvas>
           </div>
         </div>
       </div>
-      <div class="col">
-        <div class="card h-100">
+      <div class="col-md-4">
+        <div class="card shadow-sm h-100 rounded-4">
           <div class="card-body text-center">
-            <h6 class="mb-3">Department-wise Count</h6>
+            <h6 class="fw-semibold mb-3">Department-wise Count</h6>
             <canvas id="dept-chart" height="150"></canvas>
           </div>
         </div>
       </div>
     </div>
 
+
     <!-- Second Row: 2 Charts -->
-    <div class="row mb-4">
-      <div class="col-md-6">
-        <div class="card h-100">
-          <div class="card-body text-center">
-            <h6 class="mb-3">Monthly Registrations Trend</h6>     
-            <canvas id="lineChart" height="180"></canvas>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-6">
-        <div class="card h-100">
-          <div class="card-body text-center">
-            <h6 class="mb-3">Top 5 Clubs with Most Applications</h6>     
-            <canvas id="barChart" height="180"></canvas>
-          </div>
-        </div>
+    <!-- Second Row: Line + Bar Charts -->
+<div class="row g-4 mb-4">
+  <div class="col-md-6">
+    <div class="card shadow-sm h-100 rounded-4">
+      <div class="card-body text-center">
+        <h6 class="fw-semibold mb-3">📈 Monthly Registrations Trend</h6>     
+        <canvas id="lineChart" height="180"></canvas>
       </div>
     </div>
-
-    <!-- Third Row: 3 Charts -->
-    <div class="row row-cols-1 row-cols-md-3 g-4 mb-4">
-      <div class="col">
-        <div class="card h-100">
-          <div class="card-body text-center">
-           <h6 class="mb-3">Cumulative Applications Over Time</h6>
-            <canvas id="areaChart" height="180"></canvas>
-          </div>
-        </div>
-      </div>
-      <div class="col">
-        <div class="card h-100">
-          <div class="card-body text-center">
-            <h6 class="mb-3">Preferred Clubs by Stream</h6>
-            <canvas id="doughnutChart" height="180"></canvas>
-          </div>
-        </div>
-      </div>
-      <div class="col">
-        <div class="card h-100">
-          <div class="card-body text-center">
-            <h6 class="mb-3">Gender Ratio of Applicants</h6>
-            <canvas id="pieChart" height="180"></canvas>
-          </div>
-        </div>
+  </div>
+  <div class="col-md-6">
+    <div class="card shadow-sm h-100 rounded-4">
+      <div class="card-body text-center">
+        <h6 class="fw-semibold mb-3">🏆 Top 5 Clubs with Most Applications</h6>     
+        <canvas id="barChart" height="180"></canvas>
       </div>
     </div>
-
-  </div> <!-- content-wrapper -->
-</div> <!-- main-panel -->
-
-
-
+  </div>
 </div>
 
+<!-- Third Row: 3 Charts -->
+<div class="row g-4 mb-4">
+  <div class="col-md-4">
+    <div class="card shadow-sm h-100 rounded-4">
+      <div class="card-body text-center">
+        <h6 class="fw-semibold mb-3">📊 Cumulative Applications Over Time</h6>
+        <canvas id="areaChart" height="180"></canvas>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="card shadow-sm h-100 rounded-4">
+      <div class="card-body text-center">
+        <h6 class="fw-semibold mb-3">🔍 Preferred Clubs by Stream</h6>
+        <canvas id="doughnutChart" height="180"></canvas>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="card shadow-sm h-100 rounded-4">
+      <div class="card-body text-center">
+        <h6 class="fw-semibold mb-3">🚻 Gender Ratio of Applicants</h6>
+        <canvas id="pieChart" height="180"></canvas>
+      </div>
+    </div>
+  </div>
+</div>
 <div class="row">
   <div class="col-12 grid-margin">
-    <div class="card">
+    <div class="card shadow-sm rounded-4">
       <div class="card-body">
-        <h4 class="card-title">Recent Club Registrations</h4>
+        <h4 class="card-title fw-bold mb-4">📋 Recent Club Registrations</h4>
         <div class="table-responsive">
-          <table class="table">
-            <thead>
+          <table class="table table-hover align-middle">
+            <thead class="table-light">
               <tr>
-                <th> Student </th>
-                <th> Club Name </th>
-                <th> Status </th>
-                <th> Applied On </th>
-                <th> Reg. ID </th>
+                <th scope="col">Student</th>
+                <th scope="col">Club Name</th>
+                <th scope="col">Status</th>
+                <th scope="col">Applied On</th>
+                <th scope="col">Reg. ID</th>
               </tr>
             </thead>
             <tbody>
               <tr>
                 <td>
-                  <img src="assets/images/faces/face1.jpg" class="me-2" alt="image"> Varun Kumar
+                  <div class="d-flex align-items-center">
+                    <img src="assets/images/faces/face1.jpg" alt="image" class="rounded-circle me-3" width="40" height="40">
+                    <span>Varun Kumar</span>
+                  </div>
                 </td>
-                <td> App development Club </td>
-                <td>
-                  <label class="badge badge-gradient-success">Approved</label>
-                </td>
-                <td> June 12, 2025 </td>
-                <td> 23IT167 </td>
+                <td>App Development Club</td>
+                <td><span class="badge bg-success-subtle text-success fw-semibold">Approved</span></td>
+                <td>June 12, 2025</td>
+                <td>23IT167</td>
               </tr>
               <tr>
                 <td>
-                  <img src="assets/images/faces/face2.jpg" class="me-2" alt="image"> Priya Sharma
+                  <div class="d-flex align-items-center">
+                    <img src="assets/images/faces/face2.jpg" alt="image" class="rounded-circle me-3" width="40" height="40">
+                    <span>Priya Sharma</span>
+                  </div>
                 </td>
-                <td> IOT Club </td>
-                <td>
-                  <label class="badge badge-gradient-warning">Pending</label>
-                </td>
-                <td> June 10, 2025 </td>
-                <td> 22IT165</td>
+                <td>IOT Club</td>
+                <td><span class="badge bg-warning-subtle text-warning fw-semibold">Pending</span></td>
+                <td>June 10, 2025</td>
+                <td>22IT165</td>
               </tr>
               <tr>
                 <td>
-                  <img src="assets/images/faces/face3.jpg" class="me-2" alt="image"> Arjun R
+                  <div class="d-flex align-items-center">
+                    <img src="assets/images/faces/face3.jpg" alt="image" class="rounded-circle me-3" width="40" height="40">
+                    <span>Arjun R</span>
+                  </div>
                 </td>
-                <td> Coders Club </td>
-                <td>
-                  <label class="badge badge-gradient-info">Waiting List</label>
-                </td>
-                <td> June 8, 2025 </td>
-                <td> 24IT89</td>
+                <td>Coders Club</td>
+                <td><span class="badge bg-info-subtle text-info fw-semibold">Waiting List</span></td>
+                <td>June 8, 2025</td>
+                <td>24IT89</td>
               </tr>
               <tr>
                 <td>
-                  <img src="assets/images/faces/face4.jpg" class="me-2" alt="image"> Meena Raj
+                  <div class="d-flex align-items-center">
+                    <img src="assets/images/faces/face4.jpg" alt="image" class="rounded-circle me-3" width="40" height="40">
+                    <span>Meena Raj</span>
+                  </div>
                 </td>
-                <td> MATH Club </td>
-                <td>
-                  <label class="badge badge-gradient-danger">Rejected</label>
-                </td>
-                <td> June 7, 2025 </td>
-                <td> 23IT009</td>
+                <td>MATH Club</td>
+                <td><span class="badge bg-danger-subtle text-danger fw-semibold">Rejected</span></td>
+                <td>June 7, 2025</td>
+                <td>23IT009</td>
               </tr>
             </tbody>
           </table>
@@ -254,9 +308,13 @@
   </div>
 </div>
 
-        </footer>
-      </div>
-    </div>
+<!-- Footer -->
+<footer class="footer mt-auto py-3 bg-light text-center">
+  <div class="container">
+    <span class="text-muted">© 2025 Club Admin Panel</span>
+  </div>
+</footer>
+
     <!-- container-scroller -->
     <!-- plugins:js -->
     <script src="assets/vendors/js/vendor.bundle.base.js"></script>
