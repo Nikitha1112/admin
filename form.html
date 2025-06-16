@@ -92,7 +92,28 @@
     font-weight: bold;
     font-size: 1rem;
   }
+    .form-control,
+  .form-select,
+  textarea.form-control {
+    height: 45px;
+    font-size: 15px;
+    margin-top: 5px;
+  }
 
+  textarea.form-control {
+    height: auto; /* So the intro box can be multiline */
+    resize: vertical;
+  }
+
+  label.form-label {
+    font-size: 15px;
+    font-weight: 500;
+  }
+
+  .btn-primary {
+    padding: 10px;
+    font-size: 16px;
+  }
   table.dataTable tbody tr:nth-of-type(even) {
     background-color: #f8f9fa;
   }
@@ -172,33 +193,48 @@
     </ul>
   </nav>
 
-  <!-- FORM CENTERED CARD -->
-  <div class="d-flex justify-content-center align-items-center" style="min-height: 100vh; margin-left: 220px; background: #f4f6f8;">
-    <div class="card p-4" style="width: 100%; max-width: 500px; box-shadow: 0 0 15px rgba(0,0,0,0.1); border-radius: 12px;">
-      <div class="card-body">
-        <h4 class="card-title text-center mb-4" style="color: #2c3e50; font-weight: 600;">Add New Club</h4>
-        <form id="clubForm" class="forms-sample">
-          <div class="mb-3">
-            <label for="clubName" class="form-label">Club Name</label>
-            <input type="text" class="form-control" id="clubName" placeholder="Enter club name">
-          </div>
-          <div class="mb-3">
-            <label for="mission" class="form-label">Mission</label>
-            <input type="text" class="form-control" id="mission" placeholder="Enter mission">
-          </div>
-          <div class="mb-3">
-            <label for="staffCoordinator" class="form-label">Staff Co-ordinator</label>
-            <input type="text" class="form-control" id="staffCoordinator" placeholder="Enter coordinator name">
-          </div>
-          <div class="mb-3">
-            <label for="yearStart" class="form-label">Year of Start</label>
-            <input type="number" class="form-control" id="yearStart" placeholder="Enter year">
-          </div>
-          <button type="submit" class="btn btn-primary w-100" style="transition: background-color 0.3s;">Submit</button>
-        </form>
-      </div>
+  <!-- COMPACT FORM CARD -->
+<div class="d-flex justify-content-center" style="margin-left: 220px; padding: 80px 20px 20px; background: #f4f6f8; height: auto;">
+  <div class="card p-3" style="width: 100%; max-width: 500px; box-shadow: 0 0 10px rgba(0,0,0,0.05); border-radius: 10px;">
+    <div class="card-body p-3">
+      <h5 class="text-center mb-3" style="color: #2c3e50; font-weight: 600;">Add New Club</h5>
+
+      <form id="clubForm" class="forms-sample">
+        <div class="mb-2">
+          <label for="clubName" class="form-label">Club Name</label>
+          <input type="text" class="form-control" id="clubName" placeholder="Enter club name" required>
+        </div>
+
+        <div class="mb-2">
+          <label for="clubLogo" class="form-label">Club Logo</label>
+          <input type="file" class="form-control" id="clubLogo" accept="image/*" required>
+        </div>
+
+        <div class="mb-2">
+          <label for="intro" class="form-label">Club Introduction</label>
+          <textarea class="form-control" id="intro" rows="2" placeholder="Brief introduction" required></textarea>
+        </div>
+
+        <div class="mb-2">
+          <label for="staffCoordinator" class="form-label">Staff Co-ordinator</label>
+          <input type="text" class="form-control" id="staffCoordinator" placeholder="Coordinator name" required>
+        </div>
+
+        <div class="mb-2">
+          <label for="staffEmail" class="form-label">Staff Email ID</label>
+          <input type="email" class="form-control" id="staffEmail" placeholder="Staff email" required>
+        </div>
+
+        <div class="mb-3">
+          <label for="yearStart" class="form-label">Year of Start</label>
+          <input type="text" class="form-control" id="yearStart" placeholder="e.g., 2024" required>
+        </div>
+
+        <button type="submit" class="btn btn-primary w-100">Submit</button>
+      </form>
     </div>
   </div>
+</div>
 
   <!-- SCRIPT FOR REDIRECTION -->
   <script>
